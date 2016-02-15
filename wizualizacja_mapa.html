@@ -42,6 +42,13 @@
 				"fill" : "none"
 				});
 
+		var xscale = d3.scale.linear()
+			.domain([
+				d3.min(ds, function(d) {return d.month; }),
+				d3.max(ds, function(d) {return d.month; })
+
+				])
+
 		var yScale = d3.scale.linear()
 			.domain([
 				d3.min( ds, function(d) {return d.wejscie; }),
