@@ -35,9 +35,10 @@
     	var h=100;
     	var w=400;
     	var ds; //global variable for data
+    	var padding = 20;
 
 		//loading data from csv
-		d3.csv("dane.csv", function(error, data){
+		d3.csv("dane2.csv", function(error, data){
 
 			if(error) {
 				console.log(error);
@@ -54,13 +55,7 @@
 		})
 
 
-		var viz = svg.append("path")
-			.attr({
-				d: lineFun(ds),    //place where I insert data - ds variable
-				"stroke" : "purple";
-				"stroke-width" : 2,
-				"fill" : "none"
-				});
+		
 
 		var xScale = d3.scale.linear()
 			.domain([
@@ -68,7 +63,7 @@
 				d3.max(ds, function(d) {return d.month; })
 
 				])
-			.range([0, w])
+			.range([padding, w-padding])
 
 		var yScale = d3.scale.linear()
 			.domain([
@@ -76,8 +71,22 @@
 				d3.max(ds, function(d) {return d.wejscie; })
 				])
 			.range([h, 0])
-			
 
+		var yAxis = d3.svg.axis().scale(yScale).orient("left");	
+
+		var axis = svg.append("g").call(yAxis)
+			.attr("class", "axis")
+			.attr("transform", "translate("+ padding + ", 0)");
+
+		var viz = svg.append("path")
+			.attr({
+				d: lineFun(ds),    //place where I insert data - ds variable
+				"stroke" : "purple",
+				"stroke-width" : 2,
+				"fill" : "none"
+				});
+
+		
     </script>
 
 
