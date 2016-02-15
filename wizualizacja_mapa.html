@@ -28,7 +28,7 @@
 
 		var lineFun = d3.svg.line()
 			.x( function(d) {return d.month; })
-			.y( function(d) {return d.wejscia; })
+			.y( function(d) {return d.wejscia; })  //wejscia later can be changed for column name
 			.interpolate("linear");
 
 		})
@@ -41,6 +41,13 @@
 				"stroke-width" : 2,
 				"fill" : "none"
 				});
+
+		var yScale = d3.scale.linear()
+			.domain([
+				d3.min( ds, function(d) {return d.wejscie; }),
+				d3.max(ds, function(d) {return d.wejscie; })
+				])
+			.range([0, w])
 			
 
     </script>
