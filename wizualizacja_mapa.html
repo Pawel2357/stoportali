@@ -2,6 +2,26 @@
 <html>
   <head>
     <script src="d3.min.js" charset="utf-8"></script>
+
+
+    <style>
+    	.axis path,
+    	.axis line {
+    		fill: none;
+    		stroke: black;
+			shape-rendering: crispEdges;
+    	}
+
+    	.axis text {
+    		font-family: sans-serif;
+    		font-size: 10px;
+    	}
+
+    	h1 {
+    		font-family: sans-serif;
+    		font-weight: 300;
+    	}
+	</style>
   </head>
   <body>
 
@@ -42,12 +62,13 @@
 				"fill" : "none"
 				});
 
-		var xscale = d3.scale.linear()
+		var xScale = d3.scale.linear()
 			.domain([
 				d3.min(ds, function(d) {return d.month; }),
 				d3.max(ds, function(d) {return d.month; })
 
 				])
+			.range([0, w])
 
 		var yScale = d3.scale.linear()
 			.domain([
