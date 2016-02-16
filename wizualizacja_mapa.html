@@ -40,7 +40,7 @@
     	var w=400;
     	var ds; //global variable for data
     	var padding_w = 40;
-    	var padding_h = 10;
+    	var padding_h = 25;
     	
     	function getDate(d){
 
@@ -66,7 +66,7 @@
 		});	
 */
 
-		ds = [{"month":1,"najdluzej_trwajace_ogloszenie":29},
+		ds = [{"month":20141201,"najdluzej_trwajace_ogloszenie":29},
 		{"month":20150101,"najdluzej_trwajace_ogloszenie":256},
 		{"month":20150201,"najdluzej_trwajace_ogloszenie":207},
 		{"month":20150301,"najdluzej_trwajace_ogloszenie":24},
@@ -84,6 +84,7 @@
 		var maxDate = getDate(ds[ds.length-1]['month']);
 
 		console.log(minDate);
+		console.log(maxDate);
 
 
 		var xScale = d3.time.scale()
@@ -103,7 +104,7 @@
 
 
 		var lineFun = d3.svg.line()
-			.x( function(d) {return xScale(d.month); })
+			.x( function(d) {return xScale(getDate(d.month)); })
 			.y( function(d) {return yScale(d.najdluzej_trwajace_ogloszenie); })  //wejscia later can be changed for column name
 			.interpolate("linear");
 
@@ -132,7 +133,7 @@
 
 		var xAxis = svg.append("g").call(xAxisGen)
 			.attr("class", "axis")
-			.attr("transform", "translate(0,"+ h-padding_h + ")");
+			.attr("transform", "translate(0,"+ (h-padding_h) + ")");
 
 		var yAxis = svg.append("g").call(yAxisGen)
 			.attr("class", "axis")
