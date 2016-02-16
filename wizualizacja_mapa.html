@@ -68,6 +68,22 @@
 		{"month":13,"najdluzej_trwajace_ogloszenie":20}];
 
 
+		var xScale = d3.scale.linear()
+			.domain([
+				d3.min(ds, function(d) {return d.month; }),
+				d3.max(ds, function(d) {return d.month; })
+
+				])
+			.range([padding, w-padding]);
+
+		var yScale = d3.scale.linear()
+			.domain([
+				d3.min( ds, function(d) {return d.najdluzej_trwajace_ogloszenie; }),
+				d3.max(ds, function(d) {return d.najdluzej_trwajace_ogloszenie; })
+				])
+			.range([h, 0]);
+			
+
 
 		var lineFun = d3.svg.line()
 			.x( function(d) {return xScale(d.month); })
@@ -90,27 +106,17 @@
 
 		
 
-		var xScale = d3.scale.linear()
-			.domain([
-				d3.min(ds, function(d) {return d.month; }),
-				d3.max(ds, function(d) {return d.month; })
 
-				])
-			.range([padding, w-padding]);
 
-		var yScale = d3.scale.linear()
-			.domain([
-				d3.min( ds, function(d) {return d.wejscie; }),
-				d3.max(ds, function(d) {return d.wejscie; })
-				])
-			.range([h, 0]);
+			
 
+/*
 		var yAxis = d3.svg.axis().scale(yScale).orient("left");	
 
 		var axis = svg.append("g").call(yAxis)
 			.attr("class", "axis")
 			.attr("transform", "translate("+ padding + ", 0)");
-
+*/
 
 		
     </script>
