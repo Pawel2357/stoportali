@@ -42,7 +42,7 @@
     	var padding = 20;
 
 		//loading data from csv
-		d3.csv("dane2.csv", function(error, data){
+		/*d3.csv("dane2.csv", function(error, data){
 
 			if(error) {
 				console.log(error);
@@ -51,6 +51,23 @@
 				ds = data;
 			}
 		});	
+*/
+
+		ds = [{"month":1,"najdluzej_trwajace_ogloszenie":29},
+		{"month":2,"najdluzej_trwajace_ogloszenie":256},
+		{"month":3,"najdluzej_trwajace_ogloszenie":207},
+		{"month":4,"najdluzej_trwajace_ogloszenie":24},
+		{"month":5,"najdluzej_trwajace_ogloszenie":202},
+		{"month":6,"najdluzej_trwajace_ogloszenie":125},
+		{"month":7,"najdluzej_trwajace_ogloszenie":110},
+		{"month":8,"najdluzej_trwajace_ogloszenie":80},
+		{"month":9,"najdluzej_trwajace_ogloszenie":256},
+		{"month":10,"najdluzej_trwajace_ogloszenie":100},
+		{"month":11,"najdluzej_trwajace_ogloszenie":193},
+		{"month":12,"najdluzej_trwajace_ogloszenie":90},
+		{"month":13,"najdluzej_trwajace_ogloszenie":20}];
+
+
 
 		var lineFun = d3.svg.line()
 			.x( function(d) {return xScale(d.month); })
