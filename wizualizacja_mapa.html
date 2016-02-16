@@ -56,6 +56,16 @@
 
 		})
 
+		var svg = d3.select("body").append("svg").attr({width:w, height:h});
+
+		var viz = svg.append("path")
+			.attr({
+				d: lineFun(ds),    //place where I insert data - ds variable
+				"stroke" : "purple",
+				"stroke-width" : 2,
+				"fill" : "none"
+			});
+
 
 		
 
@@ -80,13 +90,6 @@
 			.attr("class", "axis")
 			.attr("transform", "translate("+ padding + ", 0)");
 
-		var viz = svg.append("path")
-			.attr({
-				d: lineFun(ds),    //place where I insert data - ds variable
-				"stroke" : "purple",
-				"stroke-width" : 2,
-				"fill" : "none"
-				});
 
 		
     </script>
