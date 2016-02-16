@@ -41,7 +41,17 @@
     	var ds; //global variable for data
     	var padding_w = 40;
     	var padding_h = 10;
-    	var 
+    	
+    	function getDate(d){
+
+    		var strDate = new String(d);
+
+    		var year = strDate.substr(0,4);
+    		var month = strDate.substr(4,2);
+    		var day = strDate.substr(6,2);
+
+    		return new Date(year, month, day);
+    	} 
 
 
 		//loading data from csv
@@ -57,24 +67,28 @@
 */
 
 		ds = [{"month":1,"najdluzej_trwajace_ogloszenie":29},
-		{"month":2,"najdluzej_trwajace_ogloszenie":256},
-		{"month":3,"najdluzej_trwajace_ogloszenie":207},
-		{"month":4,"najdluzej_trwajace_ogloszenie":24},
-		{"month":5,"najdluzej_trwajace_ogloszenie":202},
-		{"month":6,"najdluzej_trwajace_ogloszenie":125},
-		{"month":7,"najdluzej_trwajace_ogloszenie":110},
-		{"month":8,"najdluzej_trwajace_ogloszenie":80},
-		{"month":9,"najdluzej_trwajace_ogloszenie":256},
-		{"month":10,"najdluzej_trwajace_ogloszenie":100},
-		{"month":11,"najdluzej_trwajace_ogloszenie":193},
-		{"month":12,"najdluzej_trwajace_ogloszenie":90},
-		{"month":13,"najdluzej_trwajace_ogloszenie":0}];
+		{"month":20150101,"najdluzej_trwajace_ogloszenie":256},
+		{"month":20150201,"najdluzej_trwajace_ogloszenie":207},
+		{"month":20150301,"najdluzej_trwajace_ogloszenie":24},
+		{"month":20150401,"najdluzej_trwajace_ogloszenie":202},
+		{"month":20150501,"najdluzej_trwajace_ogloszenie":125},
+		{"month":20150601,"najdluzej_trwajace_ogloszenie":110},
+		{"month":20150701,"najdluzej_trwajace_ogloszenie":80},
+		{"month":20150801,"najdluzej_trwajace_ogloszenie":256},
+		{"month":20150901,"najdluzej_trwajace_ogloszenie":100},
+		{"month":20151001,"najdluzej_trwajace_ogloszenie":193},
+		{"month":20151101,"najdluzej_trwajace_ogloszenie":90},
+		{"month":20151201,"najdluzej_trwajace_ogloszenie":0}];
+
+		var minDate = getDate(ds[0]['month']);
+		var maxDate = getDate(ds[ds.length-1]['month']);
+
+		console.log(minDate);
 
 
-		var xScale = d3.scale.linear()
+		var xScale = d3.time.scale()
 			.domain([
-				d3.min(ds, function(d) {return d.month; }),
-				d3.max(ds, function(d) {return d.month; })
+				minDate,maxDate
 
 				])
 			.range([padding_w, w-padding_w]);
@@ -112,11 +126,15 @@
 
 
 			
+		var xAxisGen = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(d3.time.format("%b")); 
 
+		var yAxisGen = d3.svg.axis().scale(yScale).orient("left").ticks(4);	
 
-		var yAxis = d3.svg.axis().scale(yScale).orient("left").ticks(4);	
+		var xAxis = svg.append("g").call(xAxisGen)
+			.attr("class", "axis")
+			.attr("transform", "translate(0,"+ h-padding_h + ")");
 
-		var axis = svg.append("g").call(yAxis)
+		var yAxis = svg.append("g").call(yAxisGen)
 			.attr("class", "axis")
 			.attr("transform", "translate("+ padding_w + ", 0)");
 
