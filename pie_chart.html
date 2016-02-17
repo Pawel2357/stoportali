@@ -19,6 +19,19 @@
 	    }
     </style>
 
+    <style>
+
+		.arc text {
+		  font: 10px sans-serif;
+		  text-anchor: middle;
+		}
+
+		.arc path {
+		  stroke: #fff;
+		}
+
+	</style>
+
   </head>
   <body>
 	<div class="wrapper">
@@ -83,15 +96,21 @@
 
 		for (var i=0; i<ds.length; i++) {
   			// Look no need to do list[i] in the body of the loop
-  			list[i] = format(getDate(ds[i].month));
+  			list[i] = format(getDate(ds[i]['month']));
   			
 		};
+
+		var miesiac = "";
+
 console.log(list);
 
 
 		essai = d3.slider().scale(d3.scale.ordinal().domain(list).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value("February");
 
-    	d3.select('#slider1').call(essai);
+    	d3.select('#slider1').call(essai.on("slide", function(evt, value) {
+      miesiac = value;
+      console.log(miesiac);
+    }));
 //var slid = 
 
 
