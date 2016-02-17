@@ -11,16 +11,26 @@
     	</script>
 	<script src="d3.slider.js" charset="utf-8"></script>
 
+	<style>
+		.wrapper {
+	      width: 800px;
+	      margin-left: auto;
+	      margin-right: auto;
+	    }
+    </style>
+
   </head>
   <body>
-
-	<div id="slider1" class="d3-slider d3-slider-horizontal">
-		<a class="d3-slider-handle" style="left: 0%;"></a>
+	<div class="wrapper">
+		<div id="slider1" ></div>
 	</div>
+
+
+
 
     <script>
     	//var h = 300;
-    	//var w = 300;
+    	var w = 300;
 
     	//var slid = d3.select("body").append("svg"); //.attr({width:w, height:h});
 
@@ -28,7 +38,13 @@
 
     	//var slid = d3.svg.append("div").call(slider);
 
-    	d3.select('#slider1').call(d3.slider());
+    	//d3.select('#slider1').call(d3.slider());
+
+    	//essai = d3.slider().scale(d3.scale.ordinal().domain([new Date(2015,1,1), new Date(2015,2,1), new Date(2015,3,1), new Date(2015,4,1)]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true)]));
+
+		essai = d3.slider().scale(d3.scale.ordinal().domain(["Gecko", "Webkit", "Blink", "Trident"]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value("Gecko");
+
+    	d3.select('#slider1').call(essai);
 //var slid = 
 
 
