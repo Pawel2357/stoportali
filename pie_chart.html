@@ -42,7 +42,7 @@
 
     	//essai = d3.slider().scale(d3.scale.ordinal().domain([new Date(2015,1,1), new Date(2015,2,1), new Date(2015,3,1), new Date(2015,4,1)]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true)]));
 
-		essai = d3.slider().scale(d3.scale.ordinal().domain(["Gecko", "Webkit", "Blink", "Trident"]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value("Gecko");
+		essai = d3.slider().scale(d3.scale.ordinal().domain([new Date(2015,1,1), new Date(2015,2,1), new Date(2015,3,1), new Date(2015,4,1)]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value("Gecko");
 
     	d3.select('#slider1').call(essai);
 //var slid = 
