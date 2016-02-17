@@ -29,6 +29,38 @@
 
 
     <script>
+
+
+
+    	function getDate(d){
+
+    		var strDate = new String(d);
+
+    		var year = strDate.substr(0,4);
+    		var month = strDate.substr(4,2);
+    		var day = strDate.substr(6,2);
+
+    		return new Date(year, month, day);
+    	} 
+
+    	ds = [{"month":20141201,"najdluzej_trwajace_ogloszenie":29},
+		{"month":20150101,"najdluzej_trwajace_ogloszenie":256},
+		{"month":20150201,"najdluzej_trwajace_ogloszenie":207},
+		{"month":20150301,"najdluzej_trwajace_ogloszenie":24},
+		{"month":20150401,"najdluzej_trwajace_ogloszenie":202},
+		{"month":20150501,"najdluzej_trwajace_ogloszenie":125},
+		{"month":20150601,"najdluzej_trwajace_ogloszenie":110},
+		{"month":20150701,"najdluzej_trwajace_ogloszenie":80},
+		{"month":20150801,"najdluzej_trwajace_ogloszenie":256},
+		{"month":20150901,"najdluzej_trwajace_ogloszenie":100},
+		{"month":20151001,"najdluzej_trwajace_ogloszenie":193},
+		{"month":20151101,"najdluzej_trwajace_ogloszenie":90},
+		{"month":20151201,"najdluzej_trwajace_ogloszenie":0}];
+
+
+
+		console.log(ds.length);
+
     	//var h = 300;
     	var w = 300;
 
@@ -42,7 +74,22 @@
 
     	//essai = d3.slider().scale(d3.scale.ordinal().domain([new Date(2015,1,1), new Date(2015,2,1), new Date(2015,3,1), new Date(2015,4,1)]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true)]));
 
-		essai = d3.slider().scale(d3.scale.ordinal().domain([new Date(2015,1,1), new Date(2015,2,1), new Date(2015,3,1), new Date(2015,4,1)]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value("Gecko");
+		var format = d3.time.format("%B");
+		//format.parse("2011-01-01"); // returns a Date
+		//format(new Date(2011, 0, 1)); // returns a string
+
+
+		var list = [];
+
+		for (var i=0; i<ds.length; i++) {
+  			// Look no need to do list[i] in the body of the loop
+  			list[i] = format(getDate(ds[i].month));
+  			
+		};
+console.log(list);
+
+
+		essai = d3.slider().scale(d3.scale.ordinal().domain(list).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value("February");
 
     	d3.select('#slider1').call(essai);
 //var slid = 
