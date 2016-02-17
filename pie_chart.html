@@ -130,6 +130,41 @@
 
 
 
+		    var pie = d3.layout.pie()
+			    .sort(null)
+			    .value(function(d) { 
+		    	console.log(d[miesiac]);
+			    return d[miesiac]; }); //I added miesiac
+			
+
+			var svg = d3.select("body").append("svg")
+			    .attr("width", width)
+			    .attr("height", height)
+			    .attr("id", "svg-"+miesiac)
+			  .append("g")
+			    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+			//d3.csv("data.csv", type, function(error, data) {
+			  //if (error) throw error;
+
+			var g = svg.selectAll(".arc")
+				.data(pie(ds2))
+				.enter().append("g")
+				.attr("class", "arc")
+				.attr("id", "arc-"+miesiac);
+
+			g.append("path")
+			  .attr("d", arc)
+			  .attr("id", "path-"+miesiac)
+			  .style("fill", function(d) { return color(d["20141201"]); }); //I changed to ds2 and added ["20141201"]
+
+			g.append("text")
+			  .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+			  .attr("dy", ".35em")
+			  .text(function(d) { return d.data.age; });
+
+
+
 
 
 
@@ -162,8 +197,8 @@
 			var g = svg.selectAll(".arc")
 				.data(pie(ds2))
 				.enter().append("g")
-				.attr("class", "arc");
-				.attr("id", "arc-"+miesiac)
+				.attr("class", "arc")
+				.attr("id", "arc-"+miesiac);
 
 			g.append("path")
 			  .attr("d", arc)
