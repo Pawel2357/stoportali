@@ -167,6 +167,7 @@
 
 			g.append("path")
 			  .attr("d", arc)
+			  .attr("id", "path-"+miesiac)
 			  .style("fill", function(d) { return color(d["20141201"]); }); //I changed to ds2 and added ["20141201"]
 
 			g.append("text")
