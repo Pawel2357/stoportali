@@ -163,6 +163,7 @@
 				.data(pie(ds2))
 				.enter().append("g")
 				.attr("class", "arc");
+				.attr("id", "arc-"+miesiac)
 
 			g.append("path")
 			  .attr("d", arc)
