@@ -59,15 +59,12 @@
 		{"month":20150101,"najdluzej_trwajace_ogloszenie":256, "inne":29},
 		{"month":20150201,"najdluzej_trwajace_ogloszenie":207, "inne":123},
 		{"month":20150301,"najdluzej_trwajace_ogloszenie":24, "inne":93},
-		{"month":20150401,"najdluzej_trwajace_ogloszenie":202, "inne":53},
-		{"month":20150501,"najdluzej_trwajace_ogloszenie":125, "inne":223},
-		{"month":20150601,"najdluzej_trwajace_ogloszenie":110, "inne":143},
-		{"month":20150701,"najdluzej_trwajace_ogloszenie":80, "inne":77},
-		{"month":20150801,"najdluzej_trwajace_ogloszenie":256, "inne":125},
-		{"month":20150901,"najdluzej_trwajace_ogloszenie":100, "inne":233},
-		{"month":20151001,"najdluzej_trwajace_ogloszenie":193, "inne":134},
-		{"month":20151101,"najdluzej_trwajace_ogloszenie":90, "inne":156},
-		{"month":20151201,"najdluzej_trwajace_ogloszenie":0, "inne":163}];
+		{"month":20150401,"najdluzej_trwajace_ogloszenie":202, "inne":53}
+		];
+
+		ds2 = [{"20141201":29, "20150101":256, "20150201":207, "20150301":24, "20150401": 202},
+		{"20141201":23, "20150101":29, "20150201":123, "20150301":93, "20150401": 53}
+		];
 
 
 
@@ -90,6 +87,14 @@
 		//format.parse("2011-01-01"); // returns a Date
 		//format(new Date(2011, 0, 1)); // returns a string
 
+		var list_full = [];
+
+		for (var i=0; i<ds.length; i++) {
+  			// Look no need to do list[i] in the body of the loop
+  			list_full[i] = ds[i]['month'];
+  			
+		};
+
 
 		var list = [];
 
@@ -108,11 +113,11 @@
 		d3.select('#slider1').call(essai.on("slide", function(evt, value) {
       		miesiac = value;
       	//console.log(miesiac);
-      	console.log(list.indexOf(miesiac));
+      	console.log( list_full[ list.indexOf(miesiac) ] );
 
 
 
-	      	/*
+/*
 		var width = 960,
 		    height = 500,
 		    radius = Math.min(width, height) / 2;
@@ -131,7 +136,7 @@
 
 		var pie = d3.layout.pie()
 		    .sort(null)
-		    .value(function(d) { return d.population; });
+		    .value(function(d) { return d.population; }); //
 
 		var svg = d3.select("body").append("svg")
 		    .attr("width", width)
